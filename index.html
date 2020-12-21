@@ -12,15 +12,25 @@
             let gameNumber = 0;
             game();
 
-
             function game() {
                 // Is it game #5?
                 while (gameNumber !=5) {
                 
                     // Ask player for item
                     let playerItem = prompt("Rock, paper or scissors?");
+
+                    // Reenter if not one of the choices
+                    while (playerItem.toLowerCase() !=`rock` && playerItem.toLowerCase() !=`paper` && playerItem.toLowerCase() !=`scissors`) {
+                        playerItem = prompt("Please re-enter: Rock, paper or scissors?");
+                        }
+
+                    // Computer chooses item
                     let computerItem = computerPlay();
+                    
+                    //Determine result of round
                     playRound(playerItem, computerItem);
+
+                    //Move to next game
                     gameNumber++;
                 }
                 
@@ -49,7 +59,7 @@
                     result= 1
                 } else if (playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "scissors") {
                     result= -1
-                }
+                } 
 
                 //Announce result
                 switch(result) {
