@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <meta charset="UTF-8">
+        <meta rel="stylesheet" type="text/css" href="#" media="all"/>
+    </head>
+    <body>
+        <script>
+            let playerScore = 0;
+            let computerScore =0;
+            let gameNumber = 0;
+            game();
+
+
+            function game() {
+                // Is it game #5?
+                while (gameNumber !=5) {
+                
+                    // Ask player for item
+                    let playerItem = prompt("Rock, paper or scissors?");
+                    let computerItem = computerPlay();
+                    playRound(playerItem, computerItem);
+                    gameNumber++;
+                }
+                
+                //Determine winner
+                console.log("Player: " + playerScore + " Computer: " + computerScore);
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                
+                //Determine result
+                if (playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "rock") {
+                    result=0
+                } else if (playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "scissors") {
+                    result=1
+                } else if (playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "paper") {
+                    result= -1
+                } else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "scissors") {
+                    result= 0
+                } else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper") {
+                    result= 1
+                } else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock") {
+                    result= -1
+                } else if (playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "paper") {
+                    result= 0
+                } else if (playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "rock") {
+                    result= 1
+                } else if (playerSelection.toLowerCase() == "paper" && computerSelection.toLowerCase() == "scissors") {
+                    result= -1
+                }
+
+                //Announce result
+                switch(result) {
+                    case 0:
+                        console.log("Draw! Player: " + playerSelection + " Computer: " + computerSelection);
+                        break;
+                    case 1:
+                        console.log("You win! " + playerSelection + " beats "+ computerSelection+".");
+                        playerScore++;
+                        break;
+                    case -1:
+                        console.log("You lose! " + computerSelection + " beats "+ playerSelection+".");
+                        computerScore++;
+                }
+            }
+            
+            function computerPlay() {
+                // Randomly select either rock, paper or scissors for computer
+                let randomInt = parseInt(Math.random()*3);
+                let objectItem = [`Rock`,`Paper`,`Scissors`];
+                return objectItem[randomInt]
+            }
+        </script>
+    </body>
+</html>
